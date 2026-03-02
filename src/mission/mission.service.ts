@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import * as path from 'path'
+import * as fs from 'fs'
 
 @Injectable()
 
 export class MissionService{
+    private fps = path.join(__dirname,'../../data/mission.json')
     private readonly missions: [
     { id: 1, codename: 'OPERATION_STORM', status: 'ACTIVE' },
     { id: 2, codename: 'SILENT_SNAKE', status: 'COMPLETED' },
