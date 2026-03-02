@@ -6,7 +6,7 @@ export class MissionController{
     constructor(private readonly missionService: MissionService){}
 
 @Get()
-getSummary():{ACTIVE:number; COMPLETED:number; FAILED:number}{
+getSummary(){
     return this.missionService.getSummary()
 }
     

@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 
 export class MissionService{
-    private readonly mission: [
+    private readonly missions: [
     { id: 1, codename: 'OPERATION_STORM', status: 'ACTIVE' },
     { id: 2, codename: 'SILENT_SNAKE', status: 'COMPLETED' },
     { id: 3, codename: 'RED_DAWN', status: 'FAILED' },
@@ -12,22 +12,15 @@ export class MissionService{
     { id: 6, codename: 'GHOST_RIDER', status: 'COMPLETED' }
     ]
 
-    getSummary():{ACTIVE:number; COMPLETED:number; FAILED:number}{
-        const activeCount = this.mission.filter(
-            (c) => c.status === 'ACTIVE'
-        ).length
-        const completeCount = this.mission.filter(
-            (c) => c.status === 'COMPLETED'
-        ).length
-        const failedCount = this.mission.filter(
-            (c) => c.status === 'FAILED'
-        ).length
-
-        return{
-            ACTIVE:activeCount,
-            COMPLETED:completeCount,
-            FAILED:failedCount
+    getSummary(){
+        const syn : {[key:string]:number } = {};
+        for(const missions of this.missions){
+            if(syn[missions.status] == null){
+                syn[missions.status] = 0
+            }
+            syn[missions.status]++
         }
+        return syn;
     }
         
     
