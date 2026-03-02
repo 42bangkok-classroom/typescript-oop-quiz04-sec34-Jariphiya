@@ -1,30 +1,27 @@
 import { Injectable } from '@nestjs/common';
-import * as path from 'path'
-import * as fs from 'fs'
+import * as path from 'path';
+import * as fs from 'fs';
 
 @Injectable()
+export class MissionService {
+  private fps = path.join(__dirname, '../../data/mission.json');
+  private readonly missions: [
+    { id: 1; codename: 'OPERATION_STORM'; status: 'ACTIVE' },
+    { id: 2; codename: 'SILENT_SNAKE'; status: 'COMPLETED' },
+    { id: 3; codename: 'RED_DAWN'; status: 'FAILED' },
+    { id: 4; codename: 'BLACKOUT'; status: 'ACTIVE' },
+    { id: 5; codename: 'ECHO_FALLS'; status: 'COMPLETED' },
+    { id: 6; codename: 'GHOST_RIDER'; status: 'COMPLETED' },
+  ];
 
-export class MissionService{
-    private fps = path.join(__dirname,'../../data/mission.json')
-    private readonly missions: [
-    { id: 1, codename: 'OPERATION_STORM', status: 'ACTIVE' },
-    { id: 2, codename: 'SILENT_SNAKE', status: 'COMPLETED' },
-    { id: 3, codename: 'RED_DAWN', status: 'FAILED' },
-    { id: 4, codename: 'BLACKOUT', status: 'ACTIVE' },
-    { id: 5, codename: 'ECHO_FALLS', status: 'COMPLETED' },
-    { id: 6, codename: 'GHOST_RIDER', status: 'COMPLETED' }
-    ]
-
-    getSummary(){
-        const syn : {[key:string]:number } = {};
-        for(const missions of this.missions){
-            if(syn[missions.status] == null){
-                syn[missions.status] = 0
-            }
-            syn[missions.status]++
-        }
-        return syn;
+  getSummary() {
+    const syn: { [key: string]: number } = {};
+    for (const missions of this.missions) {
+      if (syn[missions.status] == null) {
+        syn[missions.status] = 0;
+      }
+      syn[missions.status]++;
     }
-        
-    
+    return syn;
+  }
 }

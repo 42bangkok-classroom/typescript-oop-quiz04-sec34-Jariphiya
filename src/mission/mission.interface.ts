@@ -1,9 +1,9 @@
 export interface IMission {
-  id: string
-  codename: string
-  status: string
-  targetName: string
-  riskLevel: string
-  startDate: string
-  enddate: string | null
+  id: string;
+  codename: string;
+  status: string;
+  targetName: string;
+  riskLevel: string;
+  startDate: string;
+  enddate: string | null;
 }
